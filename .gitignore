@@ -1,0 +1,6 @@
+.nuke/
+artifacts/
+bin/
+obj/
+*.user
+*.suo

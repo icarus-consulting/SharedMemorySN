@@ -3,7 +3,13 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;netstandard2.0;net47;net46;net45;net4;net35</TargetFrameworks>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
-    <DocumentationFile>..\bin\$(Configuration)\$(TargetFramework)\SharedMemory.xml</DocumentationFile>
+    <AssemblyName>SharedMemorySN</AssemblyName>
+    <DocumentationFile>..\bin\$(Configuration)\$(TargetFramework)\SharedMemorySN.xml</DocumentationFile>
+    <PackageId>SharedMemorySN</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Description>Strong-named shared memory primitives for .NET Framework and .NET Standard.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\sgKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
