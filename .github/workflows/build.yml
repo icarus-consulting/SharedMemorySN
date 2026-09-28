@@ -3,8 +3,8 @@ name: SharedMemorySN-Release
 on:
   pull_request:
   push:
-    tags:
-      - '*.*.*'
+    tags:
+      - '*.*.*'
   workflow_dispatch:
 
 jobs:
