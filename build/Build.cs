@@ -1,6 +1,7 @@
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.NuGet;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 class Build : NukeBuild
@@ -41,5 +42,13 @@ class Build : NukeBuild
             .EnableNoRestore()));
 
     Target Release => _ => _
-        .DependsOn(Pack);
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+            NuGetTasks.NuGetPush((options) =>
+    options
+        .SetSource("https://api.nuget.org/v3/index.json")
+        .SetTargetPath(ArtifactsDirectory / "*.nupkg")
+        );
+        });
 }
