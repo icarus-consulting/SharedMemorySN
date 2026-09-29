@@ -15,7 +15,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-     - name: Get temporary Nuget api key
+      - name: Get temporary Nuget api key
         id: get_nuget_api_key
         uses: NuGet/login@v1
         with:
