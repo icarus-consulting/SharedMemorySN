@@ -46,9 +46,10 @@ class Build : NukeBuild
         .Executes(() =>
         {
             NuGetTasks.NuGetPush((options) =>
-    options
-        .SetSource("https://api.nuget.org/v3/index.json")
-        .SetTargetPath(ArtifactsDirectory / "*.nupkg")
-        );
+            options
+                .SetApiKey(Environment.GetEnvironmentVariable("NUGET_API_KEY"))
+                .SetSource("https://api.nuget.org/v3/index.json")
+                .SetTargetPath(ArtifactsDirectory / "*.nupkg")
+            );
         });
 }

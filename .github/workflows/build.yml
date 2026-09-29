@@ -15,11 +15,19 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Run Release build
-        run: .\build.cmd
-
-      - name: Upload NuGet package
-        uses: actions/upload-artifact@v4
+     - name: Get temporary Nuget api key
+        id: get_nuget_api_key
+        uses: NuGet/login@v1
         with:
-          name: SharedMemorySN-release
-          path: artifacts/*.nupkg
+          user: ${{ vars.NUGET_USER }}
+        # The temporary api key lasts 1 hour. If the build ever takes longer than that,
+        # we could change this workflow run the build script twice:
+        # First with the Pack target, then get the api key, then run the build script
+        # again with the PushToNugetFeeds target and skip the other targets, so the packages
+        # don't get built again.
+
+      - name: Run Nuke Build
+        shell: powershell
+        run: .\build.ps1
+        env:
+          NUGET_API_KEY: ${{steps.get_nuget_api_key.outputs.NUGET_API_KEY}}
